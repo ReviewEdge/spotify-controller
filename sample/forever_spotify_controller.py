@@ -1,4 +1,4 @@
-import save_played_songs
+import spotify_controller
 import time
 
 
@@ -10,16 +10,16 @@ import time
 # make forever reusable with arguments?
 
 
-print("\n[forever_save_played_songs] Starting save_played_songs.py")
+print("\n[forever_spotify_controller] Starting spotify_controller.py")
 while 1:
     # checks if any music is playing
     try:
-        save_played_songs.main()
+        spotify_controller.main()
     # waits if no music is playing
     except TypeError:
-        print("[forever_save_played_songs] No songs currently playing. Waiting...")
+        print("[forever_spotify_controller] No songs currently playing. Waiting...")
         time.sleep(25)
     except Exception as e:
-        print("[forever_save_played_songs] The error: '" + str(e) +
-              "' occurred while running save_played_songs.py. Trying again...")
+        print("[forever_spotify_controller] The error: '" + str(e) +
+              "' occurred while running spotify_controller.py. Trying again...")
         time.sleep(30)

@@ -27,9 +27,9 @@ def main():
     # Blacklist sheet:
     blacklist_sheet_id = config.blacklist_sheet_id
 
-    print("\n[save_played_songs] Starting Song Logger...")
+    print("\n[spotify_controller] Starting Song Logger...")
 
-    print("\n[save_played_songs] Getting latest version of blacklist...")
+    print("\n[spotify_controller] Getting latest version of blacklist...")
 
     # downloads latest blacklist from google sheet
     blacklist_raw = gsheets_tool.get_all_sheets_data(service, blacklist_sheet_id, "A:B")
@@ -48,7 +48,7 @@ def main():
 
         # Skips songs on blacklist
         if latest_song in blacklist:
-            print("[save_played_songs] Found blacklisted song: '" + latest_song + "'. Skipping...")
+            print("[spotify_controller] Found blacklisted song: '" + latest_song + "'. Skipping...")
             spotify_tool.skip_current_track(spot_object)
 
         elif latest_song != last_recorded_song:
@@ -61,7 +61,7 @@ def main():
             # Logs last recorded song to file so it's not acted on the next time the script is run:
             files_tool.basic_write_file("last_recorded_song", last_recorded_song)
 
-            print("[save_played_songs] Recorded: " + latest_song + " by " + latest_artist)
+            print("[spotify_controller] Recorded: " + latest_song + " by " + latest_artist)
 
             # extra wait time, assumes song was just changed
             time.sleep(12)
