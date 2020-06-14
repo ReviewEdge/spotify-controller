@@ -1,0 +1,96 @@
+THESE ARE INSTRUCTIONS TO INSTALL THE COMPLETE PI SERVER, SOME STEPS ARE NOT NECESSARY
+
+NOTES:
+*IN LINUX, YOU MAY HAVE TO NAVIGATE (cd) TO THE DIRECTORY CONTAINING A SCRIPT TO BE ABLE TO RUN IT PROPERLY
+*In gsheets_tool.py, you may have to change the path of the client_secrets_file.json to /home/pi/MyPiServer/server/spotify_controller_repo/sample/client_secrets_file.json or wherever the file is located (the full path)
+
+-git clone https://github.com/ReviewEdge/my-pi-server MyPiServer
+
+-create the master config.py file, using the template in /MyPiServer/docs
+
+-move the config.py file to /MyPiServer/server
+
+-navigate to the /MyPiServer/server directory. This is where all repos should be cloned into.
+
+-You may have to set PYTHONPATH to get local imports to work. If using a bash terminal, use the command:
+	export PYTHONPATH=${PYTHONPATH}:/home/pi/MyPiServer/server
+ *your path may look different based on where you git cloned into. Make sure the path is being set to
+  the location of the /server directory.
+ *You will have to do this everytime you open a new terminal window.
+ *TO AVOID DOING THIS EVERYTIME (Raspbian):
+	-in terminal, run:
+		sudo nano .bashrc
+	-add the export command above to the last line of the file
+	-save the file
+	-restart the terminal
+
+
+
+-git clone https://github.com/ReviewEdge/furtherpy
+
+
+
+-git clone https://github.com/ReviewEdge/spotify-controller spotify_controller_repo
+
+-create a config file in the project folder.
+ You can paste in all of the example_config files, and enter the needed information.
+
+spotify_tool:
+pip3 install spotipy
+	upon running instructions:
+		Follow the directections and paste in the link it asks for.
+		You may have to add a "&" symbol to the end of the link.
+		If the link is reopening in the browser when you press enter, add a space to the end of the link.
+
+gsheets_tool:
+pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+
+	Authenticating the google api is a bit difficult.  First, you will need to go to console.developers.google.com and create a new project.
+	Within the project, you will need to enable the Google Sheets API.  Then, you will need to click "manage" the Sheets API within the project.
+	Next, go to "credentials" (on the far left). Under OAuth 2.0 Client IDs, there will be a download option for the current project.
+	Download this file, and name it "client_secrets_file".  After downloading this file, move it to the /spotify_controller_repo/sample/ directory.
+	Next, run the gsheets_tool module. 
+	
+	*Likely for Windows only: This may open an error page in the browser. If so, copy the incorrect redirect URI from the error page.
+ 	Open the console link that it tells you to visit, and paste in the redirect URI you copied as an authorized redirect URI and click save.
+	WITHOUT stopping the code that is currently running, click the authorization link again. This will attempt to authorize again, but this time
+	you have already entered the redirect URI, so it should work.
+
+	Go through the authorization process, authorize the app with the account that the google sheets were created with (that you set up in config.py).
+	After successful authorization, a "token.pickle" file will be created, and will save the authorization for the future.
+
+*Sometimes a "refresh" error occurs with the google API authentication. So far, the best way I have found to adress this is to delete the token.pickle
+file, and redo the authorization process described above.
+
+
+
+-git clone https://github.com/ReviewEdge/email-reader email_reader_repo
+
+*Make sure the email you are attempting to send emails with has been configured (within gmail settings) to allow sending access (imap and smtp permissions)
+
+-pip3 install pyzmail
+*If on Windows:
+-easy_install pyzmail
+
+-pip3 install imapclient
+
+
+
+-git clone https://github.com/ReviewEdge/delay-start delay_start_repo
+
+
+
+-git clone https://github.com/ReviewEdge/send-news send_news_repo
+
+-pip3 install beautifulsoup4
+
+
+
+-git clone https://github.com/ReviewEdge/wiki-of-the-day wiki_of_the_day_repo
+
+*	Follow google api authentication instructions above, if necessary.
+
+
+-git clone https://github.com/ReviewEdge/run-tracker run_tracker_repo
+
+*	Follow google api authentication instructions above, if necessary.
