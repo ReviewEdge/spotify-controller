@@ -51,8 +51,10 @@ def main():
             print("[spotify_controller] Found blacklisted song: '" + latest_song + "'. Skipping...")
             spotify_tool.skip_current_track(spot_object)
 
+        # Determines if there is a new song playing
         elif latest_song != last_recorded_song:
             latest_artist = spotify_tool.get_artist(spot_object)
+            # Logs new song to google sheet log
             gsheets_tool.write_data_list_to_sheet(service, song_log_sheet_id, "A:D", [latest_song, latest_artist,
                                                                                date_conv_tool.get_readable("day"),
                                                                                date_conv_tool.get_readable_time()])
