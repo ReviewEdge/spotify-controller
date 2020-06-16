@@ -62,6 +62,9 @@ pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth
 *Sometimes a "refresh" error occurs with the google API authentication. So far, the best way I have found to adress this is to delete the token.pickle
 file, and redo the authorization process described above.
 
+*NOTE: The first time track skipper is used, you may run into a permissions error.  To solve this, you may
+       have to reboot the server (the Raspberry Pi).
+
 
 
 -git clone https://github.com/ReviewEdge/email-reader email_reader_repo
