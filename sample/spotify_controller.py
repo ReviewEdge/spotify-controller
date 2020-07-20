@@ -39,6 +39,7 @@ def main():
 
     # finds last song saved to google sheet database
     if files_tool.basic_read_file("last_recorded_song") == "FILE NOT FOUND":
+        # creates new file if one does not exist
         last_recorded_song = "this is a nonexistent song title"
     else:
         last_recorded_song = files_tool.basic_read_file("last_recorded_song")
@@ -50,6 +51,9 @@ def main():
         if latest_song in blacklist:
             print("[spotify_controller] Found blacklisted song: '" + latest_song + "'. Skipping...")
             spotify_tool.skip_current_track(spot_object)
+
+            # avoids accidentally skipping multiple songs
+            time.sleep(0.5)
 
         # Determines if there is a new song playing
         elif latest_song != last_recorded_song:
